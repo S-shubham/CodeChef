@@ -1,0 +1,58 @@
+	//Spell bob
+	
+	#include<bits/stdc++.h>
+	using namespace std;
+	
+	bool counter(char a,char b,char c)
+	{
+		int x=0,y=0;
+		if(a=='b')
+		++x;
+		if(b=='b')
+		++x;
+		if(c=='b')
+		++x;
+		if(a=='o')
+		++y;
+		if(b=='o')
+		++y;
+		if(c=='o')
+		++y;
+		if(x==2 && y==1)
+		return true;
+		return false;
+	}
+	
+	int main()
+	{
+			int T;
+			cin>>T;
+			for(int t=0;t<T;t++)
+			{
+				char a1,a2,b1,b2,c1,c2;
+				cin>>a1>>b1>>c1>>a2>>b2>>c2;
+				int flag=0;
+				if(counter(a1,b1,c1))
+				flag=1;
+				else if(counter(a1,b1,c2))
+				flag=1;
+				else if(counter(a1,b2,c1))
+				flag=1;
+				else if(counter(a1,b2,c2))
+				flag=1;
+				else if(counter(a2,b1,c1))
+				flag=1;
+				else if(counter(a2,b1,c2))
+				flag=1;
+				else if(counter(a2,b2,c1))
+				flag=1;
+				else if(counter(a2,b2,c2))
+				flag=1;
+				
+				if(flag)
+				cout<<"yes";
+				else
+				cout<<"no";
+				cout<<"\n";
+			}
+	}
