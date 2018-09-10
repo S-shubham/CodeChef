@@ -1,0 +1,58 @@
+I have divided the problem into segments
+
+The below mentioned code generates a lexicographically smalles sequence possible in O(n) time
+
+............................................................................................................
+
+// Write a program to generate a sequence of numbers which is lexicographically smallest 
+// Given::
+// N=no. of elements in sequence
+// S=sum of all N elements
+// m=smallest possible value of element
+// M=Largest possible value of any element
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+	int n,s,m,M;
+	cin>>n>>s>>m>>M;
+	
+	int arr[n];
+	for(int i=0;i<n;i++)
+	arr[i]=m;
+	
+	int dif=s-(m*n);
+	int cur=n-1;
+	
+	while(dif!=0 && cur>=0)
+	{
+		int pos=M-arr[cur];
+		if(pos>dif)
+		{
+			arr[cur]+=dif;
+			dif=0;
+		}
+		else if(pos<dif)
+		{
+			dif=dif-pos;
+			arr[cur]=M;
+			--cur;
+		}
+		else
+		{
+			arr[cur]=arr[cur]+dif;
+			dif=0;
+		}
+	}
+	
+	cout<<"\nThe lexicographically smallest sequence generated is: ";
+	for(int i=0;i<n;i++)
+	cout<<arr[i]<<" ";
+}
+
+
+............................................................................................
+
+
