@@ -55,4 +55,105 @@ int main()
 
 ............................................................................................
 
+I don't know for what small error it is not accepting my solution
+At this point I really feel very disappointed with codechef for not giving any clue about where your code is going wrong
+I think codechef is designed for advanced level programmers. I would practice from some other easier platform
+
+.............................................................................................................
+
+
+// Write a program to generate a sequence of numbers which is lexicographically smallest 
+// Given::
+// N=no. of elements in sequence
+// S=sum of all N elements
+// m=smallest possible value of element
+// M=Largest possible value of any element
+///////////////////////////////////////////////////////////////////////////////
+
+//As step 2 we intend to add the rest of the functionality to our code
+//find median and then remove two elements and then find median
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+	int T;
+	cin>>T;
+	for(int t=0;t<T;t++)
+	{
+			int n,s,k,m,M;
+		cin>>n>>s>>k>>m>>M;
+		
+		vector<int> arr(n);
+		for(int i=0;i<n;i++)
+		arr[i]=m;
+		
+		int dif=s-(m*n);
+		if(dif<0)
+		{
+			cout<<"-1"<<"\n";
+			continue;
+		}
+		int cur=n-1;
+		
+		while(dif!=0 && cur>=0)
+		{
+			int pos=M-arr[cur];
+			if(pos>dif)
+			{
+				arr[cur]+=dif;
+				dif=0;
+			}
+			else if(pos<dif)
+			{
+				dif=dif-pos;
+				arr[cur]=M;
+				--cur;
+			}
+			else
+			{
+				arr[cur]=arr[cur]+dif;
+				dif=0;
+			}
+		}
+		
+		
+		int median;
+		if(n%2==0)
+		{
+			median=(arr[n/2]+arr[(n/2)-1])/2;
+		}
+		else
+		median=arr[n/2];
+		int a[n];
+		for(int i=0;i<n;i++)
+		a[i]=arr[i];
+		int k2=n%k;
+		if(k>k2)
+		{
+			arr.erase(arr.begin()+k,arr.begin()+k+1);
+			arr.erase(arr.begin()+k2,arr.begin()+k2+1);
+		}
+		else
+		{
+			arr.erase(arr.begin()+k2,arr.begin()+k2+1);
+			arr.erase(arr.begin()+k,arr.begin()+k+1);
+		}
+		
+		n=n-2;
+		int temp_median=arr[n/2];
+		if(median==temp_median)
+		cout<<"-1";
+		else
+		{
+		for(int i=0;i<n+2;i++)
+		cout<<a[i]<<" ";
+			
+		}
+		
+		cout<<"\n";
+	}
+	
+}
 
